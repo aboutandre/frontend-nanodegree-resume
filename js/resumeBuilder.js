@@ -1,7 +1,13 @@
-//$("#main").append(["André Lorch de Oliveira"]);
+var work = {};
+work.currentJob = "Web Application Designer";
+work.currentEmployer = "K+N";
+work.yearsWorked = "2016";
+work.cityOfBusiness = "Hamburg";
 
-var awesomeThoughts = "I am Andre and I am AWESOME";
+var education = {};
+education["lastSchoolAttended"] = "FHV";
+education["yearsAttended"] = "2011-2013";
+education["cityOfSchool"] = "Dornbirn, Austria";
 
-var funThoughts = awesomeThoughts.replace ("AWESOME","FUN")
-
-$("#main").append(funThoughts);
+$("#main").append(work["currentJob"]);
+$("#main").append(education.lastSchoolAttended);
