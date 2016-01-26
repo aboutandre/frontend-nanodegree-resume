@@ -103,7 +103,7 @@ var education = {
   {
     "title" : "Intro to Computer Science",
     "school" : "Udacity",
-    "dates" : "2016",
+    "dates" : "2015-2016",
     "url" : "https://www.udacity.com"
   }
 ]
