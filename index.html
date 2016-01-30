@@ -19,9 +19,10 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
   <meta charset="utf-8">
 
   <!-- Tells the browser what the title of this page should be. -->
-  <title>Resume</title>
+  <title>Portfolio Showcase</title>
 
   <!-- Load the page styles. -->
+    <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
   <link href="css/style.css" rel="stylesheet">
 
   <!--
@@ -46,12 +47,12 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
   Uncomment the <script> tag below when you're ready to add an interactive
   Google Map to your resume!
   -->
-<!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script> -->
+ <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script> 
 
   <meta name="viewport" content="width=device-width">
 </head>
 <body>
-  <div id="main">
+  <div id="main"> 
 
     <!--
     Everything from here to the <script> tag below is the skeleton of your
@@ -66,28 +67,28 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
     <div id="workExperience" class="gray">
       <h2>Work Experience</h2>
     </div>
-    <div id="projects">
+    <div id="projects"> 
       <h2>Projects</h2>
     </div>
     <div id="education" class="gray">
-      <h2>Education</h2>
+      <h2>Education</h2>  
     </div>
-    <div id="mapDiv">
-      <h2>Where I've Lived and Worked</h2>
-    </div>
+    <div id="mapDiv"> 
+      <h2>Where I've Lived and Worked</h2> 
+    </div> 
     <div id="lets-connect" class="dark-gray">
       <h2 class="orange center-text">Let's Connect</h2>
-        <ul id="footerContacts" class="flex-box">
+        <ul id="footerContacts" class="flex-box"> 
       </ul>
     </div>
   </div>
-
+ 
   <!--
   The next line tells the browser where to download the JavaScript file you'll be
   writing. In resumeBuilder.js, you'll be writing code that builds the resume
   dynamically when this website, index.html, is opened.
   -->
-  <script src="js/resumeBuilder.js"></script>
+  <script src="js/resumeBuilder.js"></script> 
 
 
   <!--
@@ -95,7 +96,7 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
   a quiz. Essentially, the next few lines are checking to see if you have not
   changed each section of the resume. If you have not made any changes to a section
   of the resume, then that part of the resume does not show up. More on this in the
-  course.
+  course. 
   -->
 
   <script type="text/javascript">
@@ -111,7 +112,7 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
     /*
         an opening and closing set of slash asterisks for block comments.
     */
-
+ 
 
     if(document.getElementsByClassName('flex-item').length === 0) {
       document.getElementById('topContacts').style.display = 'none';
