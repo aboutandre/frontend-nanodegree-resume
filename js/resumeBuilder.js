@@ -21,26 +21,25 @@ var work = {
 
 //Add work information to the resume
 
-function displayWork(){
-for (job in work.jobs) {
-    $("#workExperience").append(HTMLworkStart);
-    
-    var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-    var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-    var formattedEmployerTitle = formattedEmployer + formattedTitle;
-    
-    var formattedWorkLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
-    var formattedWorkDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-    var formattedWorkDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
-    
-    $(".work-entry:last").append(formattedEmployerTitle);
-    
-    $(".work-entry:last").append(formattedWorkLocation);
-    $(".work-entry:last").append(formattedWorkDates);
-    $(".work-entry:last").append(formattedWorkDescription);
+work.display = function () {
+    for (job in work.jobs) {
+        $("#workExperience").append(HTMLworkStart);
+
+        var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+        var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+        var formattedEmployerTitle = formattedEmployer + formattedTitle;
+
+        var formattedWorkLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+        var formattedWorkDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+        var formattedWorkDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+
+        $(".work-entry:last").append(formattedEmployerTitle);
+
+        $(".work-entry:last").append(formattedWorkLocation);
+        $(".work-entry:last").append(formattedWorkDates);
+        $(".work-entry:last").append(formattedWorkDescription);
+    }
 }
-}
-displayWork();
 
 //Add project information
 
@@ -81,28 +80,27 @@ var projects = {
 
 //Add projects to the resume
 
-projects.display = function() {
+projects.display = function () {
     for (project in projects.project) {
         $("#projects").append(HTMLprojectStart);
 
         var formattedProjTitle = HTMLprojectTitle.replace("%data%", projects.project[project].title);
         var formattedProjDate = HTMLprojectDates.replace("%data%", projects.project[project].dates);
         var formattedProjDescription = HTMLprojectDescription.replace("%data%", projects.project[project].description);
-        
+
         $(".project-entry:last").append(formattedProjTitle);
         $(".project-entry:last").append(formattedProjDate);
         $(".project-entry:last").append(formattedProjDescription);
-        
-        if (projects.project[project].images.length > 0){
-            for (image in projects.project[project].images){
+
+        if (projects.project[project].images.length > 0) {
+            for (image in projects.project[project].images) {
                 var formattedProjImage = HTMLprojectImage.replace("%data%", projects.project[project].images[image]);
                 $(".project-entry:last").append(formattedProjImage);
             }
         }
-        
+
     }
 }
-projects.display();
 
 
 //Add bio information
@@ -115,8 +113,8 @@ var bio = {
         {
             "mobile": "+4915730000555",
             "email": "info@aboutandre.com",
-            "github": "aboutandre",
-            "twitter": "_oliveirandre",
+            "github": "https://github.com/aboutandre",
+            "twitter": "https://twitter.com/oliveirandre_",
             "location": "Hamburg, Germany"
   }
 ],
@@ -124,23 +122,27 @@ var bio = {
     "biopic": "https://aboutandre.com/wp-content/uploads/2016/01/IMG_0017.jpg"
 };
 
-$("#header").append(HTMLheaderName.replace("%data%", bio.name));
-$("#header").append(HTMLheaderRole.replace("%data%", bio.role));
-$("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
-var bioPic=HTMLbioPic.replace("%data%",bio.biopic);
-$("#header").append(bioPic);
+bio.display = function () {
 
+    $("#header").append(HTMLheaderName.replace("%data%", bio.name));
+    $("#header").append(HTMLheaderRole.replace("%data%", bio.role));
+    $("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
+    $("#header").append(HTMLbioPic.replace("%data%", bio.biopic));
 
+    $("#footerContacts").append(HTMLmobile.replace("%data%", bio.contacts[0].mobile));
+    $("#footerContacts").append(HTMLemail.replace("%data%", bio.contacts[0].email));
+    $("#footerContacts").append(HTMLgithub.replace("%data%", bio.contacts[0].github));
+    $("#footerContacts").append(HTMLtwitter.replace("%data%", bio.contacts[0].twitter));
+    $("#footerContacts").append(HTMLlocation.replace("%data%", bio.contacts[0].location));
 
-if (bio.skills.length > 0) {
-    $("#header").append(HTMLskillsStart);
-    for (var i = 0; i < bio.skills.length; i++) {
-        var formatedSkill = HTMLskills.replace("%data%", bio.skills[i]);
-        $("#skills").append(formatedSkill);
+    if (bio.skills.length > 0) {
+        $("#header").append(HTMLskillsStart);
+        for (var i = 0; i < bio.skills.length; i++) {
+            var formatedSkill = HTMLskills.replace("%data%", bio.skills[i]);
+            $("#skills").append(formatedSkill);
+        }
     }
 }
-
-
 
 //Add education information
 
@@ -190,66 +192,36 @@ var education = {
 ]
 };
 
-/*function displayEducation(){
-    for (edu in education.schools) {
+//Add education information to the resume
+education.display = function () {
+
+
+    for (item in education.schools) {
         $("#education").append(HTMLschoolStart);
-
-        var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[edu].name);
-        var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[edu].location);
-        var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[edu].degree);
-        var formattedSchoolMajors = HTMLschoolMajor.replace("%data%", education.schools[edu].majors);
-        var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools[edu].dates);
-        var formattedSchoolURL = HTMLschoolURL.replace("%data%", education.schools[edu].url);
-        
-        $(".education-entry:last").append(formattedSchoolName);
-        $(".education-entry:last").append(formattedSchoolDegree);
-        $(".education-entry:last").append(formattedSchoolLocation);
-        $(".education-entry:last").append(formattedSchoolDates);
-        $(".education-entry:last").append(formattedSchoolMajors);
-        $(".education-entry:last").append(formattedSchoolURL);
-        
-        var formattedOnlineCoursesName = HTMLonlineSchool.replace("%data%", education.onlineCourses[edu].school);
-        var formattedOnlineCoursesTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[edu].title);
-        var formattedOnlineCoursesDates = HTMLonlineDates.replace("%data%", education.onlineCourses[edu].dates);
-        var formattedOnlineCoursesURL = HTMLonlineURL.replace("%data%", education.onlineCourses[edu].url);
-        
-        $(".education-entry:last").append(formattedOnlineCoursesName);
-        $(".education-entry:last").append(formattedOnlineCoursesTitle);
-        $(".education-entry:last").append(formattedOnlineCoursesDates);
-        $(".education-entry:last").append(formattedOnlineCoursesURL);
-    }
-}*/
-
-function displayEducation(){
-//education.display=function(){
-
-
-    for (item in education.schools){
-        $("#education").append(HTMLschoolStart);
-        var schoolName=HTMLschoolName.replace("%data%",education.schools[item].name);
-        schoolName=schoolName.replace("#",education.schools[item].url);
-        var schoolDegree=HTMLschoolDegree.replace("%data%",education.schools[item].degree);
-        var schoolDates=HTMLschoolDates.replace("%data%",education.schools[item].dates);
-        var schoolLocation=HTMLschoolLocation.replace("%data%",education.schools[item].location);
-        var schoolMajor=HTMLschoolMajor.replace("%data%",education.schools[item].major);
-        $(".education-entry:last").append(schoolName+schoolDegree+schoolDates+schoolLocation+"<br>"+schoolMajor+"<br>");
+        var schoolName = HTMLschoolName.replace("%data%", education.schools[item].name);
+        schoolName = schoolName.replace("#", education.schools[item].url);
+        var schoolDegree = HTMLschoolDegree.replace("%data%", education.schools[item].degree);
+        var schoolDates = HTMLschoolDates.replace("%data%", education.schools[item].dates);
+        var schoolLocation = HTMLschoolLocation.replace("%data%", education.schools[item].location);
+        var schoolMajor = HTMLschoolMajor.replace("%data%", education.schools[item].major);
+        $(".education-entry:last").append(schoolName + schoolDegree + schoolDates + schoolLocation + "<br>" + schoolMajor + "<br>");
     };
 
     $("#education").append(HTMLonlineClasses);
 
-    for (item in education.onlineCourses){
+    for (item in education.onlineCourses) {
         $("#education").append(HTMLschoolStart);
-        var onlineCourseTitle=HTMLonlineTitle.replace("%data%",education.onlineCourses[item].title);
-        var onlineCourseTitle=HTMLonlineTitle.replace("%data%",education.onlineCourses[item].title);
-        onlineCourseTitle=onlineCourseTitle.replace("#",education.onlineCourses[item].url);
-        var onlineCourseSchool=HTMLonlineSchool.replace("%data%",education.onlineCourses[item].school);
-        var schoolDates=HTMLonlineDates.replace("%data%",education.onlineCourses[item].dates);
-        var onlineCourseDescription=HTMLonlineDescription.replace("%data%",education.onlineCourses[item].description);
+        var onlineCourseTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[item].title);
+        var onlineCourseTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[item].title);
+        onlineCourseTitle = onlineCourseTitle.replace("#", education.onlineCourses[item].url);
+        var onlineCourseSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[item].school);
+        var schoolDates = HTMLonlineDates.replace("%data%", education.onlineCourses[item].dates);
+        var onlineCourseDescription = HTMLonlineDescription.replace("%data%", education.onlineCourses[item].description);
 
 
         $(".education-entry:last").append(
             onlineCourseTitle +
-            onlineCourseSchool + 
+            onlineCourseSchool +
             schoolDates +
             "<br>" +
             onlineCourseDescription +
@@ -257,38 +229,35 @@ function displayEducation(){
         );
     };
 
-
-
 };
 
-displayEducation();
-
-
+bio.display();
+work.display();
+projects.display();
+education.display();
 
 //Appends the google maps
 $("#mapDiv").append(googleMap);
-
 
 //Everthing below here is only for reference
 
 //Click locations Quiz
 
 clickLocations = [];
-function logClicks(x,y) {
-    clickLocations.push(
-        {
-            x: x,
-            y: y
-        }
-    );
+
+function logClicks(x, y) {
+    clickLocations.push({
+        x: x,
+        y: y
+    });
     console.log('x location: ' + x + '; y location: ' + y);
 }
-$(document).click(function(loc) {
+$(document).click(function (loc) {
     // your code goes here
     var x = loc.pageX;
     var y = loc.pageY;
 
-    logClicks(x,y);
+    logClicks(x, y);
 });
 
 //Internationalize Names Quiz
@@ -296,59 +265,53 @@ $(document).click(function(loc) {
 function inName() {
 
     var finalName = bio.name;
-/*
-What is going on here:
- References: http://www.w3schools.com/jsref/jsref_slice_string.asp
-             http://www.w3schools.com/jsref/jsref_indexof.asp
-"slice" is taking the "bio.name" (eg.: "andre oLIveira") and slicing the name in parts
-inside the parenthesis "slice" is searching for the first index ("0")
-The comma sets the range, it will keep going until it finds a space ' '
-According to w3schools (shame on me, I know):
-The indexOf() method returns the position of the first occurrence of a specified value in a string.
-Usage example:
-    var str = "Hello world, welcome to the universe.";
-    var n = str.indexOf("welcome");
-*/
+    /*
+    What is going on here:
+     References: http://www.w3schools.com/jsref/jsref_slice_string.asp
+                 http://www.w3schools.com/jsref/jsref_indexof.asp
+    "slice" is taking the "bio.name" (eg.: "andre oLIveira") and slicing the name in parts
+    inside the parenthesis "slice" is searching for the first index ("0")
+    The comma sets the range, it will keep going until it finds a space ' '
+    According to w3schools (shame on me, I know):
+    The indexOf() method returns the position of the first occurrence of a specified value in a string.
+    Usage example:
+        var str = "Hello world, welcome to the universe.";
+        var n = str.indexOf("welcome");
+    */
     var firstName = bio.name.slice(0, bio.name.indexOf(' '));
-/*
-    This instance of slice is taking the NOW divided first part of the complete name, ie. firstName.
-    Its first letter is being taken (0,1) and it sets this letter to upper case.
-    After that the rest of the first name is forced to lower case using the slice method.
-    Notice that only the first parameter is set, the start. According to w3schools:
-    Syntax
-    string.slice(start,end)
-    start
-    Required. 
-    The position where to begin the extraction. First character is at position 0
-    end
-    Optional.
-    The position (up to, but not including) where to end the extraction. If omitted, slice() selects all characters from the start-position to the end of the string
-    After that, all the values are returned to the already declared variable firstName
-*/
-    firstName = firstName.slice(0,1).toUpperCase() + firstName.slice(1).toLowerCase();
-/*
-    Now we declare the lastName variable. Again we take the first complete name parameter, the bio.name (eg.:"andre oLIveira") and slice it. Now instead of 0 we set the parameter as the first space ' ' + 1, since we do not want to include the space in the lastName variable.
-    Notice that again slice is using only the start parameter, meaning that the "slice" will keep going until it reaches the end of the string. After we capture the whole last name we assign the values to the variable lastName
-*/
-    var lastName = bio.name.slice(bio.name.indexOf(' ')+1);
-/*
-    This next one is easy. With the last name captured we reset the complete variable to uppercase and assign the new value again to the variable
-*/
+    /*
+        This instance of slice is taking the NOW divided first part of the complete name, ie. firstName.
+        Its first letter is being taken (0,1) and it sets this letter to upper case.
+        After that the rest of the first name is forced to lower case using the slice method.
+        Notice that only the first parameter is set, the start. According to w3schools:
+        Syntax
+        string.slice(start,end)
+        start
+        Required. 
+        The position where to begin the extraction. First character is at position 0
+        end
+        Optional.
+        The position (up to, but not including) where to end the extraction. If omitted, slice() selects all characters from the start-position to the end of the string
+        After that, all the values are returned to the already declared variable firstName
+    */
+    firstName = firstName.slice(0, 1).toUpperCase() + firstName.slice(1).toLowerCase();
+    /*
+        Now we declare the lastName variable. Again we take the first complete name parameter, the bio.name (eg.:"andre oLIveira") and slice it. Now instead of 0 we set the parameter as the first space ' ' + 1, since we do not want to include the space in the lastName variable.
+        Notice that again slice is using only the start parameter, meaning that the "slice" will keep going until it reaches the end of the string. After we capture the whole last name we assign the values to the variable lastName
+    */
+    var lastName = bio.name.slice(bio.name.indexOf(' ') + 1);
+    /*
+        This next one is easy. With the last name captured we reset the complete variable to uppercase and assign the new value again to the variable
+    */
     lastName = lastName.toUpperCase();
-/*
-    Almost done. Now we are going to overwrite the initial value of finalName (that was in the beginning 'bio.name'). We use the now correctly formatted variables firstName and lastName, plus we add a space between the variables
-*/    
+    /*
+        Almost done. Now we are going to overwrite the initial value of finalName (that was in the beginning 'bio.name'). We use the now correctly formatted variables firstName and lastName, plus we add a space between the variables
+    */
     finalName = (firstName + ' ' + lastName);
-/*
-    At last we return the now correctly formated complete name. It was "andre oLIveira", now it should be "Andre OLIVEIRA" 
-*/
+    /*
+        At last we return the now correctly formated complete name. It was "andre oLIveira", now it should be "Andre OLIVEIRA" 
+    */
     console.log(finalName);
     $('#name').text(finalName);
     return finalName;
 };
-
-$("#footerContacts").append(HTMLmobile.replace("%data%", bio.contacts[0].mobile));
-$("#footerContacts").append(HTMLemail.replace("%data%", bio.contacts[0].email));
-$("#footerContacts").append(HTMLgithub.replace("%data%", bio.contacts[0].github));
-$("#footerContacts").append(HTMLtwitter.replace("%data%", bio.contacts[0].twitter));
-$("#footerContacts").append(HTMLlocation.replace("%data%", bio.contacts[0].location));
