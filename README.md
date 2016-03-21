@@ -8,6 +8,8 @@
 ### By the end:
 Your resume will look something like this
 ![](http://i.imgur.com/pWU1Xbl.png)
+![Character Boy](https://aboutandre.com/wp-content/uploads/2016/03/char-boy.png)
+
 
 And your repository will include the following files:
 
